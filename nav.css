@@ -1,0 +1,187 @@
+/**
+ * Define with HTML so they can be
+ * Overwritten with :root
+ */
+html {
+    --primary-color: 0, 0, 0;
+    --header-height: 56px;
+    --nav-width: 256px;
+}
+
+/**
+ * NAVIGATION
+ */
+body > nav {
+    grid-area: nav;
+    position: relative;
+    z-index: 100;
+    margin-left: 0;
+    width: var( --nav-width );
+    background-color: rgb( var( --primary-color ) );
+    color: #FFF;
+    height: 100%;
+
+    transition: 0.2s cubic-bezier(0.35, 0.9, 0.4, 0.9);
+    transition-property: margin-left;
+
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+
+    -ms-autohiding-scrollbar: none;
+    scrollbar-width: none;
+}
+
+body > nav * {
+    -webkit-overflow-scrolling: touch;
+}
+
+body > nav::-webkit-scrollbar {
+    display: none;
+}
+
+body.show-nav > nav {
+    margin-left: 0;
+}
+body > nav > heading {
+	min-height: 50px;
+}
+body > nav > heading,
+body > nav > footing {
+    font-size: 20px;
+    display: flex;
+    /*height: 36px;*/
+    padding: 0 16px;
+    align-items: flex-end;
+
+    text-align: center;
+}
+body > nav > heading img {
+    width: 100%;
+    height: auto;
+    filter: grayscale(1) invert(1) brightness(5);
+    padding: 20px 0;
+}
+body > nav > subheading {
+    font-size: 13px;
+    line-height: 10px;
+    display: flex;
+    height: 20px;
+    padding: 0 16px;
+    align-items: flex-end;
+}
+body > nav a {
+    color: #FFF;
+}
+body > nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+	flex: 0 0 auto;
+}
+body > nav ul li {
+    position: relative;
+	flex: 0 0 auto;
+    /*min-height: 48px;*/
+}
+body > nav ul li > a {
+    height: 48px;
+    border-radius: 10px;
+    padding: 0 8px;
+    margin: 4px 8px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+body > nav ul li > a:after {
+    content: " ";
+    display: block;
+    background: rgba( 255, 255, 255, 0.3 );
+    width: 0px;
+    height: 0px;
+    border-radius: 100%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 24px;
+    transition: 0.2s cubic-bezier(0.35, 0.9, 0.4, 0.9);
+    transition-property: width, height;
+}
+body > nav ul li.current > a:after {
+    width: 300px;
+    height: 300px;
+    background: rgba( 255, 255, 255, 0.15 );
+}
+body > nav ul li > a:hover:after,
+body > nav ul li.current > a:hover:after {
+    width: 300px;
+    height: 300px;
+    background: rgba( 255, 255, 255, 0.3 );
+}
+body > nav ul > li i {
+    font-size: 20px;
+    margin-right: 8px;
+}
+body > nav ul > li.toggle {
+    cursor: pointer;
+}
+body > nav ul > li.toggle:after {
+    content: "\e904";
+    font-family: 'materializeninja';
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 24px;
+    transition: 0.2s cubic-bezier(0.35, 0.9, 0.4, 0.9);
+    transition-property: transform;
+}
+body > nav ul > li.toggle.show:after {
+    transform: rotate(180deg);
+}
+body > nav > ul > li.toggle ul {
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.6s cubic-bezier(0.35, 0.9, 0.4, 0.9);
+    transition-property: max-height;
+}
+body > nav > ul > li.toggle ul.show {
+    transition: 0.6s cubic-bezier(0.35, 0.9, 0.4, 0.9);
+}
+body > nav > ul > li ul li a {
+    padding-left: 28px;
+}
+body > nav > footing > div.social {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat( 3,33% );
+    text-align: center;
+    font-size: 2rem;
+    padding: 10px 0;
+}
+
+
+@media all and ( max-width: 957px ) {
+
+    body > nav {
+        margin-left: calc( ( var( --nav-width ) ) * -1 );
+        position: fixed;
+    }
+}
+
+/**
+ * CONTENT
+ */
+@media all and ( max-width: 957px ) {
+
+    body.show-nav content {
+        position: fixed;
+        top: calc( var( --header-height ) );
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+}
