@@ -5,10 +5,13 @@ export default class Nav {
     constructor ( ...args ) {
 
         const options = Object.assign( {
+			heading: '',
+			subheading: '',
+			footing: '',
             links: [ ]
         }, args[ 0 ] );
 
-        this.nav = this.buildMenuHTML( options.links );
+        this.nav = this.buildMenuHTML( options );
 		
 		_n.onNodeInsert( "nav", node => {
 			
@@ -154,7 +157,7 @@ export default class Nav {
 	
 	}
 	
-	buildMenuHTML ( linksObjArray ) {
+	buildMenuHTML ( options ) {
 		
 		function recursiveCall ( linksObjArray ) {
 		
@@ -194,20 +197,17 @@ export default class Nav {
 		
 		}
 		
-		let navHTML = recursiveCall( linksObjArray );
+		let headingHTML = options.heading;
+		let subheadingHTML = options.subheading;
+       	let footingHTML = options.footing;
+		let navHTML = recursiveCall( options.links );
 		
 		return `
 			<nav>
-				<heading>
-				</heading>
+				<heading>${ headingHTML }</heading>
+				<subheading>${ subheadingHTML }</subheading>
 				${ navHTML }
-				<footing>
-					<!-- div class="social">
-						<a href="https://www.facebook.com/knotmastersguild" target="_blank"><i class="n n-facebook"></i></a>
-						<a href="https://twitter.com/knotmastersgild" target="_blank"><i class="n n-twitter"></i></a>
-						<a href="https://instagram.com/knotmastersguild" target="_blank"><i class="n n-instagram"></i></a>
-					</div -->
-				</footing>
+				<footing>${ footingHTML }</footing>
 			</nav>
 		`;
 		

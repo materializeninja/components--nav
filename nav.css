@@ -49,7 +49,6 @@ body > nav > heading,
 body > nav > footing {
     font-size: 20px;
     display: flex;
-    /*height: 36px;*/
     padding: 0 16px;
     align-items: flex-end;
 
@@ -65,7 +64,6 @@ body > nav > subheading {
     font-size: 13px;
     line-height: 10px;
     display: flex;
-    height: 20px;
     padding: 0 16px;
     align-items: flex-end;
 }
@@ -153,15 +151,6 @@ body > nav > ul > li.toggle ul.show {
 body > nav > ul > li ul li a {
     padding-left: 28px;
 }
-body > nav > footing > div.social {
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat( 3,33% );
-    text-align: center;
-    font-size: 2rem;
-    padding: 10px 0;
-}
-
 
 @media all and ( max-width: 957px ) {
 
@@ -169,6 +158,7 @@ body > nav > footing > div.social {
         margin-left: calc( ( var( --nav-width ) ) * -1 );
         position: fixed;
     }
+
 }
 
 /**
